@@ -92,9 +92,17 @@ a {
 }
 
 .affiliation {
-  font-size: 1rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   color: var(--color-text-tertiary);
+  margin-top: var(--spacing-sm);
+}
+
+.tagline {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-xs);
 }
 
 /* ============================================
