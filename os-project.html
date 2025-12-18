@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Illinix 391 - A Unix-like operating system built from scratch in C and RISC-V Assembly">
+    <title>OS from Scratch | Neil Rayu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="project-page">
+        <div class="container">
+            <!-- Back link -->
+            <a href="projects.html" class="back-link">Projects</a>
+
+            <!-- Hero -->
+            <section class="project-hero">
+                <div class="project-hero-header">
+                    <h1>Operating System from Scratch</h1>
+                    <span class="badge">4th Place</span>
+                </div>
+                <p class="project-hero-tagline">
+                    A Unix-like OS built entirely in C and RISC-V Assembly, featuring virtual memory, preemptive multitasking, and a custom filesystem.
+                </p>
+            </section>
+
+            <!-- Video Demo -->
+            <section class="video-section">
+                <h2>Demo</h2>
+                <div class="video-container">
+                    <video controls muted preload="metadata">
+                        <source src="assets/doom-demo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+            <!-- Architecture Graph -->
+            <section class="graph-section">
+                <h2>Kernel Architecture</h2>
+                <p class="graph-section-subtitle">Click on any component to view its implementation</p>
+                
+                <div class="graph-wrapper">
+                    <div class="graph-container">
+                        <canvas id="architecture-graph"></canvas>
+                    </div>
+                    
+                    <div class="code-panel" id="code-panel">
+                        <div class="code-panel-header">
+                            <div>
+                                <div class="code-panel-title" id="code-title">Select a component</div>
+                                <div class="code-panel-filename" id="code-filename"></div>
+                            </div>
+                            <button class="code-panel-close" onclick="closeCodePanel()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="code-panel-content">
+                            <pre id="code-content"></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Features -->
+            <section class="features-section">
+                <h2>Key Features</h2>
+                <div class="features-list">
+                    <div class="feature">
+                        <h3>Sv39 Virtual Memory</h3>
+                        <p>Three-level page table with demand paging and page fault handling</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Preemptive Multitasking</h3>
+                        <p>Timer-interrupt driven scheduler with process isolation</p>
+                    </div>
+                    <div class="feature">
+                        <h3>KTFS Filesystem</h3>
+                        <p>Block-based filesystem with read-write support and caching</p>
+                    </div>
+                    <div class="feature">
+                        <h3>File Integrity Monitor</h3>
+                        <p>Kernel-level security detecting unauthorized file modifications</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section class="stack-section">
+                <h2>Built With</h2>
+                <div class="stack-tags">
+                    <span class="stack-tag">C</span>
+                    <span class="stack-tag">RISC-V Assembly</span>
+                    <span class="stack-tag">QEMU</span>
+                    <span class="stack-tag">GDB</span>
+                    <span class="stack-tag">Make</span>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/os-graph.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Projects by Neil Rayu - Firmware, embedded systems, and systems programming.">
+    <title>Projects | Neil Rayu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="main">
+        <div class="container">
+            <!-- Back link -->
+            <a href="index.html" class="back-link">Neil Rayu</a>
+
+            <!-- Page title -->
+            <h1 class="page-title">Projects</h1>
+
+            <!-- Projects list -->
+            <section class="projects-list">
+                <article class="project">
+                    <a href="os-project.html" class="project-link">
+                        <h2 class="project-title">Operating System from Scratch</h2>
+                        <p class="project-description">Multi-threaded, preemptive OS with virtual memory, process scheduling, and a custom file integrity monitoring system. 4th place in system design competition.</p>
+                        <p class="project-stack">C, RISC-V Assembly, QEMU</p>
+                    </a>
+                </article>
+
+                <article class="project">
+                    <a href="sign-language-project.html" class="project-link">
+                        <h2 class="project-title">Real-Time Sign Language Translation</h2>
+                        <p class="project-description">Embedded system achieving 12ms inference latency at 80 FPS by offloading CNN processing from Raspberry Pi to FPGA accelerator.</p>
+                        <p class="project-stack">FPGA, Vivado HLS, C++, Raspberry Pi</p>
+                    </a>
+                </article>
+
+                <article class="project">
+                    <h2 class="project-title">CXL Memory Compression Research</h2>
+                    <p class="project-description">Implementing TLB support for zswap-inspired memory compression on CXL-attached memory using Intel Agilex 7 FPGAs.</p>
+                    <p class="project-stack">SystemVerilog, Linux Kernel, Intel Agilex 7</p>
+                </article>
+
+                <article class="project">
+                    <h2 class="project-title">EV Dashboard System</h2>
+                    <p class="project-description">Led development of real-time dashboard software with CAN Bus protocol stack for low-latency vehicle communication.</p>
+                    <p class="project-stack">C/C++, STM32, TouchGFX, CAN Bus</p>
+                </article>
+
+                <article class="project">
+                    <h2 class="project-title">Embedded Cryptographic System</h2>
+                    <p class="project-description">Secure embedded system for 2025 MITRE eCTF competition implementing AEAD encryption for satellite TV transmissions.</p>
+                    <p class="project-stack">Rust, Embedded Security</p>
+                </article>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
