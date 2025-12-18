@@ -427,6 +427,7 @@ a {
 /* Code Panel */
 .code-panel {
   width: 380px;
+  height: 500px;
   background: #fafafa;
   border: 1px solid var(--color-border);
   border-radius: 12px;
@@ -437,6 +438,7 @@ a {
   transform: translateX(20px);
   transition: opacity 300ms ease, transform 300ms ease;
   pointer-events: none;
+  flex-shrink: 0;
 }
 
 .code-panel.visible {
@@ -755,5 +757,287 @@ a {
 
   .metric-value {
     font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   FPGA Dissection Animation
+   ============================================ */
+.dissection-section {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.dissection-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.dissection-container {
+  position: relative;
+  height: 600px;
+  background: linear-gradient(180deg, #fafafa 0%, #f0f0f2 100%);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.fpga-scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+/* The FPGA Board */
+.fpga-board {
+  position: relative;
+  width: 280px;
+  height: 200px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.board-label {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.board-grid {
+  position: absolute;
+  inset: 20px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+  border-radius: 4px;
+}
+
+/* Components Container */
+.fpga-components {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  pointer-events: none;
+}
+
+/* Individual Component */
+.component {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(0) scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.component.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.component-chip {
+  width: 40px;
+  height: 28px;
+  background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+  border-radius: 4px;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.component-chip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 40%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+/* Callout Lines and Labels */
+.component-callout {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+.callout-line {
+  width: 80px;
+  height: 40px;
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.callout-label {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.callout-label.callout-left {
+  text-align: right;
+}
+
+.callout-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.callout-desc {
+  font-size: 0.6875rem;
+  color: var(--color-text-tertiary);
+}
+
+/* Left-side callouts */
+.component[data-id="mic"] .component-callout,
+.component[data-id="uart"] .component-callout,
+.component[data-id="fsm"] .component-callout,
+.component[data-id="lfsr"] .component-callout {
+  left: auto;
+  right: 100%;
+  flex-direction: row-reverse;
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+/* Component Positions - All above the board */
+.component[data-id="ddr3"] {
+  top: 40px;
+  left: 500px;
+}
+
+.component[data-id="bram"] {
+  top: 100px;
+  left: 520px;
+}
+
+.component[data-id="vga"] {
+  top: 160px;
+  left: 540px;
+}
+
+.component[data-id="audio"] {
+  top: 220px;
+  left: 520px;
+}
+
+.component[data-id="mic"] {
+  top: 40px;
+  left: 260px;
+}
+
+.component[data-id="uart"] {
+  top: 100px;
+  left: 240px;
+}
+
+.component[data-id="fsm"] {
+  top: 160px;
+  left: 220px;
+}
+
+.component[data-id="lfsr"] {
+  top: 220px;
+  left: 240px;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+}
+
+.scroll-hint svg {
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* Dissection Responsive */
+@media (max-width: 900px) {
+  .dissection-container {
+    height: 500px;
+  }
+
+  .fpga-components {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+@media (max-width: 600px) {
+  .dissection-container {
+    height: 400px;
+  }
+
+  .fpga-board {
+    width: 200px;
+    height: 140px;
+  }
+
+  .fpga-components {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+
+  .callout-title {
+    font-size: 0.75rem;
+  }
+
+  .callout-desc {
+    font-size: 0.625rem;
   }
 }

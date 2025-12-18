@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Talking Ben FPGA - Full recreation of the classic game on FPGA with voice detection, DDR3 storage, and VGA output">
+    <title>Talking Ben FPGA | Neil Rayu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="project-page">
+        <div class="container">
+            <!-- Back link -->
+            <a href="projects.html" class="back-link">Projects</a>
+
+            <!-- Hero -->
+            <section class="project-hero">
+                <div class="project-hero-header">
+                    <h1>Talking Ben FPGA</h1>
+                </div>
+                <p class="project-hero-tagline">
+                    A full hardware recreation of the classic Talking Ben game on FPGA, featuring voice detection, DDR3 video/audio storage, and real-time VGA output.
+                </p>
+            </section>
+
+            <!-- FPGA Dissection Section -->
+            <section class="dissection-section">
+                <h2>Hardware Architecture</h2>
+                <p class="graph-section-subtitle">Scroll to explore the FPGA components</p>
+                
+                <div class="dissection-container" id="dissection-container">
+                    <div class="fpga-scene">
+                        <!-- The FPGA Board -->
+                        <div class="fpga-board" id="fpga-board">
+                            <div class="board-label">Urbana FPGA Board</div>
+                            <div class="board-grid"></div>
+                        </div>
+                        
+                        <!-- Components that will float out -->
+                        <div class="fpga-components" id="fpga-components">
+                            <div class="component" data-id="ddr3">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M0,25 L80,25 L100,0" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label">
+                                        <span class="callout-title">DDR3 Memory</span>
+                                        <span class="callout-desc">128MB for frames & audio</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="component" data-id="bram">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M0,25 L80,25 L100,0" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label">
+                                        <span class="callout-title">BRAM Buffer</span>
+                                        <span class="callout-desc">Ping-pong frame buffer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="component" data-id="vga">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M0,25 L80,25 L100,50" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label">
+                                        <span class="callout-title">VGA Controller</span>
+                                        <span class="callout-desc">HDMI output timing</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="component" data-id="audio">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M0,25 L80,25 L100,50" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label">
+                                        <span class="callout-title">Audio PWM</span>
+                                        <span class="callout-desc">WAV playback module</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="component" data-id="mic">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M100,25 L20,25 L0,0" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label callout-left">
+                                        <span class="callout-title">PDM Microphone</span>
+                                        <span class="callout-desc">Voice detection input</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="component" data-id="uart">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M100,25 L20,25 L0,0" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label callout-left">
+                                        <span class="callout-title">UART</span>
+                                        <span class="callout-desc">PC data transfer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="component" data-id="fsm">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M100,25 L20,25 L0,50" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label callout-left">
+                                        <span class="callout-title">Animation FSM</span>
+                                        <span class="callout-desc">Game state controller</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="component" data-id="lfsr">
+                                <div class="component-chip"></div>
+                                <div class="component-callout">
+                                    <svg class="callout-line" viewBox="0 0 100 50">
+                                        <path d="M100,25 L20,25 L0,50" stroke="currentColor" fill="none" stroke-width="1"/>
+                                    </svg>
+                                    <div class="callout-label callout-left">
+                                        <span class="callout-title">LFSR</span>
+                                        <span class="callout-desc">Random response generator</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Scroll progress indicator -->
+                    <div class="scroll-hint" id="scroll-hint">
+                        <span>Scroll to explore</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12l7 7 7-7"/>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Architecture Graph (same style as other projects) -->
+            <section class="graph-section">
+                <h2>System Block Diagram</h2>
+                <p class="graph-section-subtitle">Click on any component to view details</p>
+                
+                <div class="graph-wrapper">
+                    <div class="graph-container">
+                        <canvas id="architecture-graph"></canvas>
+                    </div>
+                    
+                    <div class="code-panel" id="code-panel">
+                        <div class="code-panel-header">
+                            <div>
+                                <div class="code-panel-title" id="code-title">Select a component</div>
+                                <div class="code-panel-filename" id="code-filename"></div>
+                            </div>
+                            <button class="code-panel-close" onclick="closeCodePanel()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 6L6 18M6 6l12 12"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="code-panel-content">
+                            <pre id="code-content"></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Features -->
+            <section class="features-section">
+                <h2>System Components</h2>
+                <div class="features-list">
+                    <div class="feature">
+                        <h3>Video Pipeline</h3>
+                        <p>DDR3 storage with ping-pong BRAM buffer for glitch-free VGA output at 60Hz</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Audio Pipeline</h3>
+                        <p>WAV file playback through PWM with DDR3 arbiter for concurrent access</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Voice Detection</h3>
+                        <p>PDM microphone with amplitude detection triggering random responses</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Animation FSM</h3>
+                        <p>State machine controlling game flow with LFSR for random response selection</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack -->
+            <section class="stack-section">
+                <h2>Built With</h2>
+                <div class="stack-tags">
+                    <span class="stack-tag">SystemVerilog</span>
+                    <span class="stack-tag">Vivado</span>
+                    <span class="stack-tag">DDR3</span>
+                    <span class="stack-tag">VGA/HDMI</span>
+                    <span class="stack-tag">Python</span>
+                </div>
+            </section>
+        </div>
+        <small class="copyright">© Neil Rayu</small>
+    </main>
+
+    <script src="js/fpga-dissection.js"></script>
+    <script src="js/ben-graph.js"></script>
+</body>
+</html>
