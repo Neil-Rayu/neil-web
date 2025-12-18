@@ -200,6 +200,17 @@ a {
   color: var(--color-text);
 }
 
+/* Copyright */
+.copyright {
+  position: fixed;
+  bottom: var(--spacing-md);
+  right: var(--spacing-lg);
+  font-size: 0.6875rem;
+  color: var(--color-text-tertiary);
+  opacity: 0.5;
+  letter-spacing: 0.02em;
+}
+
 /* ============================================
    Projects Page
    ============================================ */
